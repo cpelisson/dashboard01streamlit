@@ -18,10 +18,11 @@ df_rec_estado = df.drop_duplicates(subset='Local da compra')[['Local da compra',
 df['Data da Compra'] = pd.to_datetime(df['Data da Compra'], format='%d/%m/%Y')
 
 df_rec_mensal = df.set_index('Data da Compra').groupby(pd.Grouper(freq='M'))['Preço'].sum().reset_index()
+print(df_rec_mensal)
 
 # Adiciona colunas de Ano e Mês
 df_rec_mensal['Ano'] = df_rec_mensal['Data da Compra'].dt.year
-df_rec_mensal['Mês'] = df_rec_mensal['Data da Compra'].dt.month_name()
+df_rec_mensal['Mes'] = df_rec_mensal['Data da Compra'].dt.month_name()
 
 # Mostra o DataFrame com a receita mensal, o ano e o mês
 
@@ -42,3 +43,4 @@ def mensagem_sucesso():
         )
     time.sleep(3)
     success.empty()
+    
